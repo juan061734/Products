@@ -5,6 +5,15 @@ public class Products {
     private int stock;
     private String descripcion;
     private int id;
+    private boolean habilitado;
+
+    public boolean isHabilitado() {
+        return habilitado;
+    }
+
+    public void setHabilitado(boolean habilitado) {
+        this.habilitado = habilitado;
+    }
 
     public String getNombre() {
         return nombre;

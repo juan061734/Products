@@ -11,6 +11,7 @@ public class Methods {
         String nombre, descripcion;
         double precio;
         int stock, id, numeroproductos;
+        boolean habilitado = true;
 
         System.out.println("ingrese la cantidad de productos a ingresar");
         numeroproductos = entrada.nextInt();
@@ -33,6 +34,7 @@ public class Methods {
             products.setStock(stock);
             products.setDescripcion(descripcion);
             products.setId(id);
+            products.setHabilitado(habilitado);
             product.add(products);
         }
 
@@ -125,20 +127,20 @@ public class Methods {
         return;
     }
 
-    public static void EliminarById() {
-        boolean encontrado = false;
+    public static void CambiarEstadoById() {
         System.out.println("Ingrese el id del producto que deseas eliminar");
         int id = entrada.nextInt();
         for (int i = 0; i < product.size(); i++) {
             if (product.get(i).getId() == id) {
-                System.out.println("Producto  eliminado");
-                encontrado = true;
-                product.remove(i);
-
-                if (!encontrado) {
-                    System.out.println("Producto no encontrado");
-                    continue;
+                if (product.get(i).isHabilitado()) {
+                    product.get(i).setHabilitado(false);
+                } else {
+                    product.get(i).setHabilitado(true);
                 }
+
+            } else {
+                System.out.println("Producto no encontrado");
+
             }
         }
 
@@ -147,7 +149,7 @@ public class Methods {
     public static void main(String[] args) {
         int opcion = 0;
 
-        while (opcion != 5) {
+        do {
             System.out.println("Menú:");
             System.out.println("1. Agregar producto");
             System.out.println("2. Mostrar Todos los productos");
@@ -167,14 +169,13 @@ public class Methods {
             } else if (opcion == 4) {
                 ActualizarProductoId();
             } else if (opcion == 5) {
-                EliminarById();
+                CambiarEstadoById();
             } else if (opcion == 6) {
                 System.out.println("Saliendo del menú...");
-
             } else {
                 System.out.println("Opción no válida. Por favor, seleccione una opción del menú.");
             }
-        }
+        } while (opcion != 6);
     }
 
 }
