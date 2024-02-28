@@ -1,5 +1,10 @@
-public class Products {
+//JUAN PABLO PALOMINO GUARIN
+//FICHA 2821728
+//FECHA 23-02-2023
 
+//clase
+public class Products {
+    // atributos
     private String nombre;
     private double precio;
     private int stock;
@@ -7,18 +12,22 @@ public class Products {
     private int id;
     private boolean habilitado;
 
+    // retorna el estado actual
     public boolean isHabilitado() {
         return habilitado;
     }
 
+    // set modifica el estado
     public void setHabilitado(boolean habilitado) {
         this.habilitado = habilitado;
     }
 
+    // retorna el valor actual del nombre
     public String getNombre() {
         return nombre;
     }
 
+    // modifica el nombre
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

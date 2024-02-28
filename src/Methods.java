@@ -5,16 +5,23 @@ import java.util.Scanner;
 public class Methods {
 
     static Scanner entrada = new Scanner(System.in);
+    // declarar la lista o arraylist que contiene y almace objetos de manera
+    // dinamica
     static ArrayList<Products> product = new ArrayList<>();
+    // Metodo para leer los productos ingresados
 
     public static void Leerproducts() {
+        // definir variables
+
         String nombre, descripcion;
         double precio;
         int stock, id, numeroproductos;
         boolean habilitado = true;
+        // Ingresar los datos del producto
 
         System.out.println("ingrese la cantidad de productos a ingresar");
         numeroproductos = entrada.nextInt();
+        // recorrer el numeroproductos a ingresar
         for (int i = 1; i <= numeroproductos; i++) {
             System.out.println("Producto #" + i);
             System.out.println("Ingrese el identificador");
@@ -27,8 +34,9 @@ public class Methods {
             stock = entrada.nextInt();
             System.out.println("Descripcion");
             descripcion = entrada.next();
-
+            // crear instacia del objeto de la clase Products y almacenar los atributos
             Products products = new Products();
+            // Mandar la informacion ingresada (TECLADO) por el usuario a la clase Products
             products.setNombre(nombre);
             products.setPrecio(precio);
             products.setStock(stock);
@@ -41,8 +49,12 @@ public class Methods {
     }
 
     public static void GetListarElementos() {
+        // Recorrer la lista product para obtener el atributo de su (posicion actual
+        // "i")
         for (int i = 0; i < product.size(); i++) {
             System.out.println("Producto #" + i);
+            // Mostrar por consola la posicion y el atributo del producto de la lista
+            // product
             System.out.println(product.get(i).getId());
             System.out.println(product.get(i).getNombre());
             System.out.println(product.get(i).getPrecio());
@@ -54,8 +66,11 @@ public class Methods {
     }
 
     public static void GetBuscarElementoId() {
+        // solicitar el id del product a buscar
+
         System.out.println("ingrese el id del producto a buscar");
         int id = entrada.nextInt();
+        // recorrer el tamaño de la lista y su posicion
         for (int i = 0; i < product.size(); i++) {
             if (product.get(i).getId() == id) {
                 System.out.println("Nombre: " + product.get(i).getNombre());
@@ -70,16 +85,18 @@ public class Methods {
     public static void ActualizarProductoId() {
         System.out.println("Ingrese el Id del producto que deseas actualizar");
         int id = entrada.nextInt();
+        // recorrer el tamaño de la lista y su posicion
 
         for (int i = 0; i < product.size(); i++) {
+            // validar que el Id que registrado exista
             if (product.get(i).getId() == id) {
-
+                // mostrar los datos del id encontrado
                 System.out.println("Nombre: " + product.get(i).getNombre());
                 System.out.println("Precio: " + product.get(i).getPrecio());
                 System.out.println("Cantidad: " + product.get(i).getStock());
                 System.out.println("Descripción: " + product.get(i).getDescripcion());
                 System.out.println("******************************************");
-
+                // menu de opciones
                 System.out.println("Ingrese el dato que deseas actualizar:");
                 System.out.println("1. Nombre");
                 System.out.println("2. Precio");
@@ -87,10 +104,13 @@ public class Methods {
                 System.out.println("4. Descripción");
                 System.out.println("5. Todo");
                 int opcion = entrada.nextInt();
-
+                // Condicion
                 if (opcion == 1) {
+                    // ingresar el nuevo dato
                     System.out.println("Nuevo nombre:");
                     String nuevoNombre = entrada.next();
+                    // Validar el atributo en su posicion actual y mandar el dato nuevo al Set para
+                    // actualizarlo
                     product.get(i).setNombre(nuevoNombre);
                 } else if (opcion == 2) {
                     System.out.println("Nuevo precio:");
@@ -123,15 +143,19 @@ public class Methods {
                 }
             }
         }
-
+        // retornar al menú
         return;
     }
 
     public static void CambiarEstadoById() {
         System.out.println("Ingrese el id del producto que deseas eliminar");
         int id = entrada.nextInt();
+        // recorrer el tamaño de la lista y su posicion
+
         for (int i = 0; i < product.size(); i++) {
+            // buscar el identificador a eliminar
             if (product.get(i).getId() == id) {
+                // Cambiar el estaod del producto
                 if (product.get(i).isHabilitado()) {
                     product.get(i).setHabilitado(false);
                 } else {
@@ -139,6 +163,7 @@ public class Methods {
                 }
 
             } else {
+                // dato no encontrado
                 System.out.println("Producto no encontrado");
 
             }
@@ -150,6 +175,7 @@ public class Methods {
         int opcion = 0;
 
         do {
+            // menu de opciones
             System.out.println("Menú:");
             System.out.println("1. Agregar producto");
             System.out.println("2. Mostrar Todos los productos");
@@ -161,6 +187,7 @@ public class Methods {
             opcion = entrada.nextInt();
 
             if (opcion == 1) {
+                // llamar los metodos en un menú
                 Leerproducts();
             } else if (opcion == 2) {
                 GetListarElementos();
